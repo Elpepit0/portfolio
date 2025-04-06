@@ -1,0 +1,258 @@
+body {
+    margin: 0;
+    background-color: #0f2c3e; /* Couleur de fond par défaut */
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh; /* Assure que le contenu occupe au moins toute la hauteur de la fenêtre */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+header {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden; /* Ensure content doesn't overflow */
+}
+/* Curseur principal */
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    pointer-events: none; /* Empêche le curseur de bloquer les clics */
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+    z-index: 1000; /* Place le curseur au-dessus de tout */
+    opacity: 1; /* Affiche le curseur par défaut */
+}
+
+/* Petit point au centre */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 3px;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, opacity 0.2s ease;
+    z-index: 1001;
+    opacity: 1; /* Affiche le point par défaut */
+}
+
+/* Effet de clic : agrandit le curseur principal */
+.cursor.click {
+    transform: translate(-50%, -50%) scale(2);
+}
+
+/* Effet de survol sur un bouton : change la couleur */
+.cursor.hover {
+    background-color: #ffffff;
+    opacity: 0.85; /* Assure que le curseur est complètement visible */
+    transform: translate(-50%, -50%) scale(2);
+}
+#visual {
+    position: fixed; /* Positionne le SVG en arrière-plan */
+    top: 0;
+    left: 0;
+    width: 100%; /* Le SVG prend toute la largeur */
+    height: 100vh; /* Limite la hauteur du SVG à la hauteur de la fenêtre */
+    display: block;
+    z-index: -2; /* Place le SVG derrière tout le contenu */
+    object-fit: cover; /* Assure que le SVG couvre tout l'espace sans déformation */
+    transform-origin: center;
+    filter: blur(20px); /* Aucune flou par défaut */
+}
+
+#visual path {
+    transition: transform 0.1s ease-out; /* Ajoute une transition fluide */
+    will-change: transform; /* Optimise les performances */
+}
+.circle {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    background-color: rgba(255, 255, 255, 0.8); /* facultatif */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(0, 0) scale(0.6);
+    transition: all 0.3s ease-in-out;
+}
+.logo {
+    margin-top: 60px;
+    margin-left: 50px;
+    width: 100px;
+    height: 75px;
+    background-image: url(assets/logo-transparent-png.png);
+    background-size: cover;
+    display: inline-block;
+}
+
+  
+.interactive-title span {
+    opacity: 0; /* Les lettres commencent invisibles */
+    transform: scale(0.5); /* Réduit la taille initialement */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Ajout d'animations pour l'apparition */
+}
+  
+.interactive-title span.visible {
+    opacity: 1; /* Rendre les lettres visibles */
+    transform: scale(1); /* Réinitialise le scale pour un effet de zoom fluide */
+}
+  
+  /* Effet lors du survol de chaque lettre */
+.interactive-title span:hover {
+    color: #498df3; /* Change la couleur lors du survol */
+    transform: scale(1.2); /* Augmente la taille au survol */
+}
+  
+  
+.container {
+    position: relative;
+    overflow: hidden; /* Empêche le contenu de déborder */
+    z-index: 1; /* Place le contenu devant le SVG */
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.header-container {
+    position: relative;
+    height: 600px;
+    margin: 0 auto;
+    z-index: 2; /* Place le conteneur d'en-tête au-dessus du SVG */
+}
+
+.interactive-title {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5.5em; /* Taille de la police pour le titre */
+    color: white; /* Couleur du texte */
+    text-align: center; /* Centre le texte */
+    font-family: 'Arial', sans-serif; /* Police de caractères */
+    font-weight: bold; /* Gras */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre du texte */
+    z-index: 3; /* Place le titre au-dessus du SVG */
+    position: relative;
+    font-family: "Rubik Puddles", system-ui;
+    letter-spacing: 3px;
+}
+
+.header-text {
+    font-size: 1.2em; /* Taille de la police pour le texte */
+    color: white; /* Couleur du texte */
+    text-align: center; /* Centre le texte */
+    font-family: 'Arial', sans-serif; /* Police de caractères */
+    font-weight: normal; /* Normal */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Ombre du texte */
+    z-index: 3; /* Place le texte au-dessus du SVG */
+    position: relative;
+    top: 50%; /* Positionne le texte en dessous du titre */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.project-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Hauteur de la fenêtre */
+    overflow-y: auto; /* Permet le défilement vertical */
+    z-index: 2; /* Place le conteneur de projets au-dessus du SVG */
+    padding: 20px; /* Ajoute un peu d'espace autour du contenu */
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); /* Crée une grille responsive */
+    gap: 30px; /* Espace entre les éléments de la grille */
+    padding: 100px; /* Ajoute un peu d'espace autour de la grille */
+}
+
+.project {
+    background-color: rgba(255, 255, 255, 0.8); /* Couleur de fond blanche avec transparence */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 20px; /* Espace intérieur */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre portée */
+    transition: transform 0.3s ease; /* Transition pour l'effet de survol */
+}
+
+.project-wrap {
+    position: relative;
+    overflow: hidden; /* Empêche le débordement */
+    border-radius: 10px; /* Coins arrondis */
+}
+
+.project-image {
+    width: 100%;
+    height: 100%; /* Ajuste la hauteur automatiquement */
+    border-radius: 10px; /* Coins arrondis */
+    transition: transform 0.3s ease; /* Transition pour l'effet de survol */
+    background-image: url(assets/discorde.png);
+}
+
+.project-title {
+    font-size: 1.5em; /* Taille de la police pour le titre du projet */
+    color: #333; /* Couleur du texte */
+    text-align: center; /* Centre le texte */
+    font-family: 'Arial', sans-serif; /* Police de caractères */
+    font-weight: bold; /* Gras */
+    margin-top: 10px; /* Espace au-dessus du titre */
+}
+
+.project-description {
+    font-size: 1em; /* Taille de la police pour la description du projet */
+    color: #666; /* Couleur du texte */
+    text-align: center; /* Centre le texte */
+    font-family: 'Arial', sans-serif; /* Police de caractères */
+    margin-top: 10px; /* Espace au-dessus de la description */
+}
+.project-button {
+    display: inline-block; /* Affiche le bouton en ligne */
+    padding: 10px 20px; /* Espace intérieur du bouton */
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte du bouton */
+    border-radius: 5px; /* Coins arrondis */
+    text-decoration: none; /* Supprime le soulignement */
+    transition: background-color 0.3s ease; /* Transition pour l'effet de survol */
+}
+
+.from-circle-text {
+    opacity: 0;
+    transform: scale(0.5);
+    will-change: transform, opacity;
+    position: relative; /* ou absolute si besoin */
+}
+
+@media (max-width: 768px) {
+    #visual {
+        height: 150vh; /* Augmente la hauteur pour couvrir les écrans plus longs */
+    }
+}
+@media (max-width: 480px) {
+    #visual {
+        height: 200vh; /* Ajuste encore plus pour les très petits écrans */
+    }
+}
+

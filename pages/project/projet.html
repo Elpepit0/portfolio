@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project</title>
+    <script src="scripts.js" defer></script>
+    <link rel="stylesheet" href="project.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oi&family=Rubik+Bubbles&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Modak&family=Oi&family=Rubik+Bubbles&family=Rubik+Puddles&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+</head>
+<body>
+       
+    <main>
+        
+        <svg id="visual" viewBox="0 0 900 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="900" height="400" fill="#001220"></rect>
+            <defs>
+                <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#4A90E2" />
+                    <stop offset="100%" stop-color="#001220" />
+                </linearGradient>
+                <filter id="wave-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feDropShadow dx="0" dy="10" stdDeviation="5" flood-color="rgba(0, 0, 0, 0.5)" />
+                </filter>
+            </defs>
+            <g transform="translate(900, 0)">
+                <path d="M0 378.6C-23 380.5 -46 382.5 -65.7 372.8C-85.5 363.2 -101.9 341.9 -119 327C-136.1 312.1 -153.8 303.7 -167.5 290.1C-181.2 276.5 -190.8 257.8 -207.6 247.4C-224.4 237 -248.4 235 -270.4 226.9C-292.5 218.8 -312.6 204.7 -319.6 184.5C-326.5 164.3 -320.4 138 -319.5 116.3C-318.6 94.6 -323.1 77.5 -333.8 58.9C-344.6 40.3 -361.6 20.1 -378.6 0L0 0Z" fill="url(#wave-gradient)" filter="url(#wave-shadow)"></path>
+            </g>
+            <g transform="translate(0, 600)">
+                <path d="M0 -378.6C16.9 -349.6 33.9 -320.6 56.6 -321C79.4 -321.5 107.9 -351.5 127.6 -350.5C147.2 -349.5 158 -317.7 173 -299.6C188 -281.6 207.4 -277.5 223.7 -266.6C240 -255.7 253.1 -237.9 262 -219.8C270.8 -201.7 275.4 -183.2 293.6 -169.5C311.8 -155.8 343.7 -146.8 355.8 -129.5C367.8 -112.2 359.9 -86.5 360.4 -63.6C360.9 -40.6 369.8 -20.3 378.6 0L0 0Z" fill="url(#wave-gradient)" filter="url(#wave-shadow)"></path>
+            </g>
+        </svg>
+        <a href="/">
+            <div class="logo"></div>
+        </a>
+            
+        <div class="circle">
+        </div>
+        <div class="container from-circle-text">
+            <div class="header-container">
+                <div class="interactive-title">MY PROJECTS</div>
+                <div class="header-text interactive-title">Website and project creation varied enough to offer unique experiences while learning and experimenting with new technologies.</div>
+            </div>
+            <div class="project-container">
+                <div class="project-grid">
+                    <div class="project">
+                        <div class="project-wrap">
+                            <div class="project-image"></div>
+                            <div class="project-title">Project 1</div>
+                            <div class="project-description">Description oddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddf project 1.</div>
+                            <div class="project-button">View Project</div>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <div class="project-wrap">
+                            <div class="project-image"></div>
+                            <div class="project-title">Project 1</div>
+                            <div class="project-description">Description of project 1.</div>
+                            <div class="project-button">View Project</div>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <div class="project-wrap">
+                            <div class="project-image"></div>
+                            <div class="project-title">Project 1</div>
+                            <div class="project-description">Description of project 1.</div>
+                            <div class="project-button">View Project</div>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <div class="project-wrap">
+                            <div class="project-image"></div>
+                            <div class="project-title">Project 1</div>
+                            <div class="project-description">Description of project 1.</div>
+                            <div class="project-button">View Project</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-contianer"></div>
+        </div>
+    </main>
+    
+        
+    
+    <div class="cursor-dot"></div>
+    <div class="cursor"></div>
+</body>
+</html>

@@ -1,7 +1,34 @@
 body {
     margin: 0;
-    background-color: #0f2c3e;
+    background-color: #0f2c3e; /* Couleur de fond par défaut */
+    position: relative;
+    min-height: 100vh; /* Assure que le contenu occupe au moins toute la hauteur de la fenêtre */
+    overflow: hidden; /* Empêche le défilement vertical */
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#visual {
+    position: absolute; /* Positionne le SVG en arrière-plan */
+    top: 0;
+    left: 0;
+    width: 100%; /* Le SVG prend toute la largeur */
+    height: 100vh; /* Limite la hauteur du SVG à la hauteur de la fenêtre */
+    display: block;
+    z-index: -2; /* Place le SVG derrière tout le contenu */
+    object-fit: cover; /* Assure que le SVG couvre tout l'espace sans déformation */
+    transform-origin: center;
+}
+
+#visual path {
+    transition: transform 0.1s ease-out; /* Ajoute une transition fluide */
+    will-change: transform; /* Optimise les performances */
+}
+
 
 header {
     position: relative;
@@ -15,11 +42,10 @@ header {
     width: 1200px;
     height: 60px;
     margin: 0 auto;
-    background-color: #505050;
 }
 
 #header-title {
-    top: 8px;
+    top: 20%;
     float: left;
 }
 
@@ -36,7 +62,7 @@ header {
     margin-right: 15px;
     background-size: cover;
     display: inline-block;
-    background-color: #505050;
+    background-color: transparent;
 }
 .icon2 {
     position: relative;
@@ -45,7 +71,7 @@ header {
     margin-right: 15px;
     background-size: cover;
     display: inline-block;
-    background-color: #001220;
+    background-color: transparent;
 }
 
 .icon-discord {
@@ -62,10 +88,11 @@ header {
 
 .title {
     position: relative;
-    font-family: "Oi", serif;
+    font-family: "Rubik Bubbles", system-ui;
     color: #ffffff;
     font-size: 30px;
     margin-bottom: 20px;
+    display: inline;
 }
 
 a {
@@ -75,23 +102,9 @@ a {
 .portfolio {
     position: relative;
     width: 100%;
-    height: 100vh; /* Prend toute la hauteur de la fenêtre */
-}
-
-.container-portfolio-svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: -1;
-    overflow: hidden; /* Assurez-vous que les vagues ne débordent pas */
-}
-
-.container-portfolio-svg svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
+    height: 100vh; /* Limite la hauteur de la section à la hauteur de la fenêtre */
+    overflow: hidden; /* Empêche le contenu de déborder */
+    z-index: 1; /* Place le contenu devant le SVG */
 }
 
 .container-portfolio {
@@ -100,34 +113,52 @@ a {
     margin-left: auto;
     margin-right: auto;
     z-index: 1; /* Le contenu du portfolio est devant la vague */
+    top: 5%;
 }
 
 .container-portfolio-text {
     position: absolute;
-    width: 460px;
+    width: 600px;
     margin-top: 10%;
     margin-right: auto;
-    margin-left: 25%;
+    margin-left: 17%;
+    transition: all 0.5s ease-in-out;
+    transform-origin: top right;
+}
+
+.animated-text span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animated-text span.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .portfolio-text-title {
     position: relative;
-    font-family: "arial", sans-serif;
+    font-family: "Modak", system-ui;
     color: #ffffff;
     font-size: 60px;
     line-height: 65px;
     margin-bottom: 18px;
-    font-weight: 700;
+    width: 550px;
+    letter-spacing: 5px;
 }
 .portfolio-text-body {
     position: relative;
-    font-family: "arial", sans-serif;
+    font-family: "Modak", system-ui;
     color: #ffffff;
     font-size: 20px;
     line-height: 30px;
     margin-bottom: 18px;
-    font-weight: 400;
+    width: 450px;
+    letter-spacing: 1px;
 }
+/* Style initial du bouton */
 .portfolio-text-button {
     position: relative;
     display: inline-block;
@@ -135,62 +166,56 @@ a {
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
-    border-color: #ffffff;
+    border-color: transparent; /* Bordure invisible au départ */
     font-family: Arial;
     color: #ffffff;
     font-size: 14px;
     font-weight: bold;
-}
-
-.container-portfolio-svg div button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #333;
-    color: white;
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 24px;
+    overflow: hidden; /* Nécessaire pour masquer l'animation de la bordure */
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-}
-.container-portfolio-svg div button:hover {
-    background-color: #555; /* Change la couleur de fond au survol */
-    transform: translate(-50%, -50%) scale(1.1); /* Agrandit légèrement le bouton */
+    transition: color 0.3s ease; /* Transition pour le texte */
 }
 
-.container-portfolio-svg div button:active {
-    transform: translate(-50%, -50%) scale(0.9) rotate(360deg); /* Réduit et fait tourner le bouton lors du clic */
-    transition: transform 0.5s ease; /* Durée de la rotation */
+/* Animation de la bordure */
+.portfolio-text-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #ffffff;
+    transition: width 0.3s ease; /* Transition pour l'animation */
+    z-index: -1; /* Place l'animation derrière le texte */
+}
+
+/* Effet au survol */
+.portfolio-text-button:hover::before {
+    width: 100%; /* Étend la bordure sur toute la largeur */
+}
+
+.portfolio-text-button:hover {
+    color: #000; /* Change la couleur du texte au survol */
 }
 
 .footer-container {
-    position: relative;
+    position: absolute;
+    top: 45%;
+    right: 10%;
+    transform: translateY(-50%);
     z-index: 1;
-    position: relative;
-    width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: auto;
+    width: 450px;
+    transition: all 0.5s ease-in-out;
+    transform-origin: top right;
 }
+
 .footer-column {
     position: relative;
-    width: 450px;
-    margin-right: 300px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    float: left;
+    margin-bottom: 20px;
 }
 
 .footer-column-last {
-    margin-right: 0px;
+    margin-bottom: 0;
 }
 .text {
     position: relative;
@@ -202,7 +227,7 @@ a {
 }
 .avatar {
     position: relative;
-    width: 120px;
+    width: 25%;
     height: 120px;
     margin-right: 20px;
     margin-bottom: 20px;
@@ -210,5 +235,133 @@ a {
     background-image: url(assets/avatar.png);
     border-radius: 30%;
     border: #505050 solid 4px;
+}
 
+#dice-button-container {
+    position: absolute;
+    margin-top: 18px;
+    z-index: 10;
+}
+
+#dice-button {
+    width: 60px;
+    height: 60px;
+    border:#ffffff solid 2px;
+    border-radius: 50%;
+    background-color: #333;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+#dice-button:hover {
+    background-color: #555;
+    transform: scale(1.1);
+}
+
+#dice-button:active {
+    transform: scale(0.9) rotate(360deg);
+    transition: transform 0.5s ease;
+}
+
+/* Curseur principal */
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    pointer-events: none; /* Empêche le curseur de bloquer les clics */
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+    z-index: 1000; /* Place le curseur au-dessus de tout */
+    opacity: 1; /* Affiche le curseur par défaut */
+}
+
+/* Petit point au centre */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, opacity 0.2s ease;
+    z-index: 1001;
+    opacity: 1; /* Affiche le point par défaut */
+}
+
+/* Effet de clic : agrandit le curseur principal */
+.cursor.click {
+    transform: translate(-50%, -50%) scale(2);
+}
+
+/* Effet de survol sur un bouton : change la couleur */
+.cursor.hover {
+    background-color: #ffffff;
+    opacity: 0.85; /* Assure que le curseur est complètement visible */
+    transform: translate(-50%, -50%) scale(2);
+}
+.circle {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    background-color: rgba(255, 255, 255, 0.8); /* facultatif */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(0, 0) scale(0.6);
+    transition: all 0.3s ease-in-out;
+}
+.logo {
+    top: 60px;
+    left: 50px;
+    width: 100px;
+    height: 75px;
+    background-image: url(assets/logo-transparent-png.png);
+    position: relative;
+    background-size: cover;
+    display: inline-block;
+}
+.move-to-circle {
+    transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+    transform: scale(1); /* Réduit la taille à 10% */
+    opacity: 0; /* Rendre invisible */
+    filter: blur(5px); /* Ajoute un flou */
+    position: absolute; /* Pour permettre le déplacement */
+}
+
+@media (max-width: 1440px) {
+    .footer-container {
+        margin-top: 300px;
+    }
+    .portfolio-text-title {
+        font-size: 40px;
+        line-height: 55px;
+    }
+    .container-portfolio-text {
+        margin-left: 10%;
+    }
+    .portfolio-text-body {
+        font-size: 15px;
+    }
+        
 }
