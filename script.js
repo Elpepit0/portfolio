@@ -74,14 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==== 3. Mode clair via le cercle ====
-    let lightMode = false;
-    circle.addEventListener("click", () => {
-        lightMode = !lightMode;
-        body.classList.toggle("light-mode", lightMode);
-        textsToAspirate.forEach(el => el.classList.toggle("light-mode", lightMode));
-    });
-
     // ==== 4. Curseur personnalisé ====
     document.body.classList.add("show-cursor");
 

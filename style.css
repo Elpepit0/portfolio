@@ -365,3 +365,49 @@ a {
     }
         
 }
+
+@media (max-width: 1024px) {
+    .title {
+        font-size: 25px;
+    }
+    .portfolio-text-title {
+        font-size: 30px;
+        line-height: 55px;
+        letter-spacing: 1px;
+    }
+    .text {
+        font-size: 12px;
+    }
+    .portfolio-text-body {
+        font-size: 10px;
+    }
+    .portfolio-text-button {
+        font-size: 12px;
+    }
+    #dice-button {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+    }
+        
+}
+
+@media (max-width: 540px) {
+    .footer-container {
+        top: 43%;
+        right: 15%;
+        width: 325px;
+    }
+    .footer-column {
+        margin-bottom: 0px;
+    }
+    .avatar {
+        width: 33%;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        float: left;
+    }
+    .text {
+        font-size: 11px;
+    }
+}

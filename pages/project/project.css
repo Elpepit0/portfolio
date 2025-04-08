@@ -180,7 +180,6 @@ header {
     height: 100vh; /* Hauteur de la fenêtre */
     overflow-y: auto; /* Permet le défilement vertical */
     z-index: 2; /* Place le conteneur de projets au-dessus du SVG */
-    padding: 20px; /* Ajoute un peu d'espace autour du contenu */
 }
 
 .project-grid {
@@ -256,3 +255,30 @@ header {
     }
 }
 
+@media (max-width: 1200px) {
+    .project-grid {
+        padding: 50px; /* Réduit l'espace autour de la grille sur les écrans plus petits */
+    }
+    .project {
+        padding: 10px; /* Réduit l'espace intérieur des projets */
+    }
+    .interactive-title {
+        font-size: 3.2em; /* Réduit la taille de la police pour le titre du projet */
+    }
+    .header-text {
+        font-size: 0.8em; /* Réduit la taille de la police pour la description du projet */
+        letter-spacing: 0px;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ajuste la grille pour les écrans plus petits */
+    }
+    .project-title {
+        font-size: 1.5em; /* Réduit la taille de la police pour le titre du projet */
+    }
+    .project-description {
+        font-size: 0.8em; /* Réduit la taille de la police pour la description du projet */
+    }
+}
